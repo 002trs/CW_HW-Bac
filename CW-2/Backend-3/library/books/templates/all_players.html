@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block title %}Список игроков{% endblock %}
+
+{% block body_content %}
+<ul>
+    {% for player in all_players %}
+        <li><a href="/description/{{ player.id }}">{{ player.name }} {{ player.surname }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

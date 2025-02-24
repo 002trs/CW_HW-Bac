@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block title %}Описание игрока{% endblock %}
+
+{% block body_content %}
+<ul>
+    <h1>{{ myplayer.name }} {{ myplayer.surname }}</h1>
+    <p>{{ myplayer.year }}</p>
+    <p>{{ myplayer.country }}</p>
+    <p>{{ myplayer.dirthdate }}</p>
+</ul>
+{% endblock %}
