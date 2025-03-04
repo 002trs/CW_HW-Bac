@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Редактировать профиль{% endblock %}
+{% block content %}
+<h2>Редактировать профиль</h2>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    <label>Логин</label><br>
+    <input type="text" name="username" value="{{ user.username }}">
+  </p>
+  <p>
+    <label>Роль</label><br>
+    <input type="text" name="role" value="{{ user.role }}">
+  </p>
+  <p>
+    <label>О себе</label><br>
+    <textarea name="about">{{ user.about }}</textarea>
+  </p>
+  <p>
+    <label>Фото</label><br>
+    <input type="file" name="photo">
+  </p>
+  <button type="submit">Сохранить</button>
+  <a href="{% url 'profile' %}">Отмена</a>
+</form>
+{% endblock %}
