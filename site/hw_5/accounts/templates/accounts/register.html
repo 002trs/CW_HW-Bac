@@ -1,0 +1,45 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="materialContainer">
+  <div class="box">
+    <div class="title">REGISTER</div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <!-- Django-форма UserCreationForm содержит поля username, password1, password2 -->
+      {{ form.non_field_errors }}
+      <div class="input">
+        <label>Username</label>
+        {{ form.username }}
+        <span class="spin"></span>
+      </div>
+
+      <div class="input">
+        <label>Password</label>
+        {{ form.password1 }}
+        <span class="spin"></span>
+      </div>
+
+      <div class="input">
+        <label>Repeat Password</label>
+        {{ form.password2 }}
+        <span class="spin"></span>
+      </div>
+
+      <div class="button login">
+        <button type="submit"><span>NEXT</span> <i class="fa fa-check"></i></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

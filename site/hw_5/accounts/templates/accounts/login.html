@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login & Register</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="materialContainer">
+
+  <!-- ЛОГИН-БЛОК -->
+  <div class="box">
+    <div class="title">LOGIN</div>
+    <form method="POST">
+      {% csrf_token %}
+      <!-- Скрытое поле для разделения логики -->
+      <input type="hidden" name="action" value="login">
+
+      <div class="input">
+        <label for="username">Username</label>
+        <input type="text" name="username" required />
+        <span class="spin"></span>
+      </div>
+
+      <div class="input">
+        <label for="password">Password</label>
+        <input type="password" name="password" required />
+        <span class="spin"></span>
+      </div>
+
+      <div class="button login">
+        <button type="submit">
+          <span>GO</span>
+        </button>
+      </div>
+      <a class="pass-forgot" href="#">Forgot your password?</a>
+    </form>
+  </div>
+
+
+  <!-- БЛОК РЕГИСТРАЦИИ (спрятан, показывается при .active) -->
+  <div class="overbox">
+    <!-- Обычно в CodePen этот div .material-button.alt-2 + JS добавляет/убирает класс active -->
+    <div class="material-button alt-2" id="btn-register">
+      <span class="shape"></span>
+    </div>
+
+    <div class="title">REGISTER</div>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="register">
+
+      <div class="input">
+        <label>Username</label>
+        <input type="text" name="reg_username" required />
+        <span class="spin"></span>
+      </div>
+
+      <div class="input">
+        <label>Password</label>
+        <input type="password" name="reg_password1" required />
+        <span class="spin"></span>
+      </div>
+
+      <div class="input">
+        <label>Repeat Password</label>
+        <input type="password" name="reg_password2" required />
+        <span class="spin"></span>
+      </div>
+
+      <div class="button">
+        <button type="submit">
+          <span>NEXT</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

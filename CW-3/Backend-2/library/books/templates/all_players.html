@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<ul>
+    {% for player in all_players %}
+        <li><a href="/description/{{ player.id }}">{{ player.name }} {{player.surname}}</a></li> <!-- Исправлено -->
+    {% endfor %}
+</ul>
+
+</body>
+
+</html>
