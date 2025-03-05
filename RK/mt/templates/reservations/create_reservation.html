@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Создать бронь</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="customer_id" class="form-label">Выберите клиента:</label>
+      <select id="customer_id" name="customer_id" class="form-select">
+        <option value="">-- выберите клиента --</option>
+        {% for c in customers %}
+          <option value="{{ c.id }}">{{ c.name }} ({{ c.phone }})</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="table_id" class="form-label">Выберите столик:</label>
+      <select id="table_id" name="table_id" class="form-select">
+        <option value="">-- выберите столик --</option>
+        {% for t in tables %}
+          <option value="{{ t.id }}">Столик #{{ t.number }} (мест: {{ t.seats }})</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Дата (YYYY-MM-DD):</label>
+      <input type="text" id="date" name="date" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
+  </form>
+{% endblock %}

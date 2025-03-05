@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h1>Список столиков</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Номер</th>
+        <th>Мест</th>
+        <th>Доступен</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in tables %}
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.number }}</td>
+        <td>{{ t.seats }}</td>
+        <td>{{ t.is_available }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Добавить столик</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="number" class="form-label">Номер</label>
+      <input type="text" id="number" name="number" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="seats" class="form-label">Кол-во мест</label>
+      <input type="text" id="seats" name="seats" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить столик</button>
+  </form>
+{% endblock %}

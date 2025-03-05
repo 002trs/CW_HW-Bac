@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Брони пользователя {{ customer.name }} ({{ customer.phone }})</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID брони</th>
+        <th>Столик</th>
+        <th>Дата</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in reservations %}
+      <tr>
+        <td><a href="{% url 'reservation_details' r.id %}">{{ r.id }}</a></td>
+        <td>#{{ r.table.number }} ({{ r.table.seats }} мест)</td>
+        <td>{{ r.date }}</td>
+        <td>{{ r.get_status_display }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

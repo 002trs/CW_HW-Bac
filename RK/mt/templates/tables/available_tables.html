@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Доступные столики на дату: {{ query_date }}</h1>
+  <form method="GET">
+    <div class="mb-3">
+      <label for="date" class="form-label">Дата (YYYY-MM-DD)</label>
+      <input type="text" id="date" name="date" class="form-control" placeholder="2025-03-10" />
+    </div>
+    <button type="submit" class="btn btn-primary">Показать доступные столики</button>
+  </form>
+
+  <hr>
+
+  {% if tables %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Номер</th>
+          <th>Мест</th>
+          <th>Доступен</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in tables %}
+        <tr>
+          <td>{{ t.id }}</td>
+          <td>{{ t.number }}</td>
+          <td>{{ t.seats }}</td>
+          <td>{{ t.is_available }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Нет доступных столиков или дата не указана.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Детали брони</h1>
+  <p>ID: {{ reservation.id }}</p>
+  <p>Пользователь: {{ reservation.customer.name }} ({{ reservation.customer.phone }})</p>
+  <p>Столик: #{{ reservation.table.number }} ({{ reservation.table.seats }} мест)</p>
+  <p>Дата: {{ reservation.date }}</p>
+  <p>Статус: {{ reservation.get_status_display }}</p>
+  
+  <hr>
+  <h2>Обновить статус</h2>
+  <form method="POST" action="{% url 'update_reservation' reservation.id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="status" class="form-label">Статус:</label>
+      <select id="status" name="status" class="form-select">
+        <option value="pending" {% if reservation.status == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="confirmed" {% if reservation.status == 'confirmed' %}selected{% endif %}>Confirmed</option>
+        <option value="canceled" {% if reservation.status == 'canceled' %}selected{% endif %}>Canceled</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Обновить</button>
+  </form>
+
+  <hr>
+  <h2>Удалить бронь</h2>
+  <form method="POST" action="{% url 'delete_reservation' reservation.id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+  </form>
+{% endblock %}
